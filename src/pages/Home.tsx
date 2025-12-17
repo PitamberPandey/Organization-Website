@@ -247,7 +247,7 @@ export default function Home({ onNavigate }: HomeProps) {
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 <a
-  href="https://wa.me/9779845769570" // Replace with your WhatsApp number
+  href="https://wa.me/9779748437611" // Replace with your WhatsApp number
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-3xl flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 z-50 space-x-2"
@@ -256,7 +256,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
   <span className="text-white font-semibold">WhatsApp</span>
 </a>
 <a
-  href="tel:+9779845769570" // Replace with your phone number including country code
+  href="tel:+9779748437611" // Replace with your phone number including country code
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-20 right-6 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-3xl flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 z-50 space-x-2"

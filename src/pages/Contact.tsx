@@ -203,9 +203,8 @@ export default function Contact({ onNavigate }: ContactProps) {
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                         Phone
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400">9845769570</p>
-                      <p className="text-gray-600 dark:text-gray-400">9806903097</p>
-                      <p className="text-gray-600 dark:text-gray-400">Sun–Fri 9 AM – 6 PM</p>
+                      <p className="text-gray-600 dark:text-gray-400">9748437611</p>
+         <p className="text-gray-600 dark:text-gray-400">Sun–Fri 9 AM – 6 PM</p>
                     </div>
                   </div>
 

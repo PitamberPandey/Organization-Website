@@ -114,7 +114,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </li>
               <li className="flex items-center space-x-2 text-sm">
                 <Phone className="w-4 h-4 text-blue-400" />
-                <span>9845769570</span>
+                <span>9748437611</span>
               </li>
               <li className="flex items-center space-x-2 text-sm">
                 <MapPin className="w-4 h-4 text-blue-400" />
