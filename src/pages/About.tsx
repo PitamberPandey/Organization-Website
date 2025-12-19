@@ -42,7 +42,7 @@ function Counter({ target, duration = 7000, label }: { target: number; duration?
 -------------------------------------------- */
 export default function About({ onNavigate }: AboutProps) {
   const team = [
-    { name: "Sujan Subadi", role: "Legal Expert", initial: "SS" },
+    { name: "Sujan Subedi", role: "Legal Expert", initial: "SS" },
     { name: "Nikesh Nepal", role: "Legal Expert", initial: "SJ" },
     { name: "Pitamber Pandey", role: "Tech Expert", initial: "PP" },
     

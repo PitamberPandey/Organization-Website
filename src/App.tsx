@@ -8,6 +8,7 @@ import LawServices from './pages/LawServices';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import PublishDocs from './pages/Publish';
+import TopBar from './components/TopBar';
 
 type Page = 'home' | 'it-services' | 'law-services' | 'about' | 'contact';
 
@@ -36,6 +37,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <TopBar />
         <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
         {renderPage()}
         <Footer onNavigate={setCurrentPage} />
