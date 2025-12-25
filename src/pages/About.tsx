@@ -55,17 +55,17 @@ export default function About({ onNavigate }: AboutProps) {
   const team = [
     {
       name: "Sujan Subedi",
-      role: "Legal Expert",
+      role: "Legal Associates",
       image: sujanImg,
     },
     {
       name: "Nikesh Nepal",
-      role: "Legal Expert",
+      role: "Legal Associates",
       image: nikeshImg,
     },
     {
       name: "Pitamber Pandey",
-      role: "Tech Expert",
+      role: "Tech Associates",
       image: pitamberImg,
     },
   ];
