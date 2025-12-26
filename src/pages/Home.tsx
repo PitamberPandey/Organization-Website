@@ -1,11 +1,13 @@
+// src/pages/Home.tsx
+import { useState } from 'react';
 import { ArrowRight, Code, Scale, Star, CheckCircle, Zap, Shield } from 'lucide-react';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import PhoneIcon from '@mui/icons-material/Phone';
+import { Helmet } from 'react-helmet'
 
 import BookConsultation from '../components/BookConsultation';
 import { itServices, lawServices } from '../data/services';
 import { testimonials } from '../data/testimonials';
-import { useState } from 'react';
 import coverImage from './cover.jpg';
 
 interface HomeProps {
@@ -17,49 +19,74 @@ export default function Home({ onNavigate }: HomeProps) {
 
   return (
     <div className="min-h-screen">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Pluto Associates - IT & Legal Services in Nepal</title>
+        <meta
+          name="description"
+          content="Pluto Associates provides IT solutions and legal services in Nepal, helping businesses thrive digitally and stay compliant."
+        />
+        <meta
+          name="keywords"
+          content="IT services, legal services, consultancy, Nepal, business solutions,company Restration, web development, legal compliance, corporate law,divorce in Nepal, IT consultancy"
+        />
+        <meta name="author" content="Pluto Associates" />
+        <link rel="canonical" href="https://plutoassociates.com/" />
+
+        {/* Open Graph / Social Media */}
+        <meta property="og:title" content="Pluto Associates - IT & Legal Services in Nepal" />
+        <meta
+          property="og:description"
+          content="Comprehensive IT solutions and expert legal services for your business in Nepal."
+        />
+        <meta property="og:url" content="https://plutoassociates.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://plutoassociates.com/cover.jpg" />
+      </Helmet>
+
+      {/* Hero Section */}
       <section
-  className="relative min-h-screen flex items-center justify-center pt-16"
-  style={{
-    backgroundImage: `url(${coverImage})`, // <-- your image path
-    backgroundSize: 'cover',        // makes the image cover the entire section
-    backgroundPosition: 'center',   // center the image
-    backgroundRepeat: 'no-repeat',  // prevent repetition
-  }}
->
-  {/* Optional overlay for better text readability */}
-  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center animate-fade-in">
-    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-      Your Complete
-      <br />
-      <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-        IT & Legal Services
-      </span>
-    </h1>
-    <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-      Comprehensive technology solutions and legal expertise under one roof.
-      Empowering your business to thrive in the digital age.
-    </p>
-    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <button
-        onClick={() => onNavigate('contact')}
-        className="group bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+        className="relative min-h-screen flex items-center justify-center pt-16"
+        style={{
+          backgroundImage: `url(${coverImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
-        <span>Get Started</span>
-        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-      </button>
-      <button
-        onClick={() => onNavigate('about')}
-        className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-gray-200 hover:border-blue-600 transition-all duration-300 hover:scale-105"
-      >
-        Learn More
-      </button>
-    </div>
-  </div>
-</section>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Your Complete
+            <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+              IT & Legal Services
+            </span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Comprehensive technology solutions and legal expertise under one roof. Empowering your
+            business to thrive in the digital age.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="group bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+            >
+              <span>Get Started</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={() => onNavigate('about')}
+              className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-gray-200 hover:border-blue-600 transition-all duration-300 hover:scale-105"
+            >
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
 
+      {/* Services Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -72,15 +99,18 @@ export default function Home({ onNavigate }: HomeProps) {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* IT Solutions Card */}
             <div
               onMouseEnter={() => setHoveredService('it')}
               onMouseLeave={() => setHoveredService(null)}
               className="relative group cursor-pointer"
               onClick={() => onNavigate('it-services')}
             >
-              <div className={`bg-gradient-to-br from-blue-500 to-cyan-500 dark:from-blue-600 dark:to-cyan-600 rounded-2xl p-8 h-full shadow-xl transition-all duration-300 ${
-                hoveredService === 'it' ? 'scale-105 shadow-2xl' : ''
-              }`}>
+              <div
+                className={`bg-gradient-to-br from-blue-500 to-cyan-500 dark:from-blue-600 dark:to-cyan-600 rounded-2xl p-8 h-full shadow-xl transition-all duration-300 ${
+                  hoveredService === 'it' ? 'scale-105 shadow-2xl' : ''
+                }`}
+              >
                 <Code className="w-16 h-16 text-white mb-4" />
                 <h3 className="text-3xl font-bold text-white mb-4">IT Solutions</h3>
                 <p className="text-blue-100 text-lg mb-6 leading-relaxed">
@@ -101,15 +131,18 @@ export default function Home({ onNavigate }: HomeProps) {
               </div>
             </div>
 
+            {/* Legal Solutions Card */}
             <div
               onMouseEnter={() => setHoveredService('legal')}
               onMouseLeave={() => setHoveredService(null)}
               className="relative group cursor-pointer"
               onClick={() => onNavigate('law-services')}
             >
-              <div className={`bg-gradient-to-br from-slate-700 to-slate-900 dark:from-slate-800 dark:to-slate-950 rounded-2xl p-8 h-full shadow-xl transition-all duration-300 ${
-                hoveredService === 'legal' ? 'scale-105 shadow-2xl' : ''
-              }`}>
+              <div
+                className={`bg-gradient-to-br from-slate-700 to-slate-900 dark:from-slate-800 dark:to-slate-950 rounded-2xl p-8 h-full shadow-xl transition-all duration-300 ${
+                  hoveredService === 'legal' ? 'scale-105 shadow-2xl' : ''
+                }`}
+              >
                 <Scale className="w-16 h-16 text-white mb-4" />
                 <h3 className="text-3xl font-bold text-white mb-4">Legal Solutions</h3>
                 <p className="text-slate-300 text-lg mb-6 leading-relaxed">
@@ -131,6 +164,7 @@ export default function Home({ onNavigate }: HomeProps) {
             </div>
           </div>
 
+          {/* IT vs Legal Info */}
           <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8 border-2 border-blue-200 dark:border-blue-900">
             <div className="flex items-center justify-center mb-6">
               <Zap className="w-8 h-8 text-blue-600 dark:text-blue-400 mr-3" />
@@ -139,14 +173,16 @@ export default function Home({ onNavigate }: HomeProps) {
               </h3>
             </div>
             <p className="text-center text-gray-700 dark:text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
-              While IT services drive innovation and digital transformation, legal services ensure compliance and protection.
-              Together, they create a complete ecosystem for business success. Pluto uniquely provides both,
-              streamlining your operations and saving you time and resources.
+              While IT services drive innovation and digital transformation, legal services ensure
+              compliance and protection. Together, they create a complete ecosystem for business
+              success. Pluto uniquely provides both, streamlining your operations and saving you time
+              and resources.
             </p>
           </div>
         </div>
       </section>
 
+      {/* Why Choose Pluto Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -159,6 +195,7 @@ export default function Home({ onNavigate }: HomeProps) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
+            {/* Feature Cards */}
             <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in">
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mb-4">
                 <Zap className="w-7 h-7 text-white" />
@@ -167,11 +204,12 @@ export default function Home({ onNavigate }: HomeProps) {
                 One-Stop Solution
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Access both IT and legal services from a single trusted partner, streamlining your business operations.
+                Access both IT and legal services from a single trusted partner, streamlining your
+                business operations.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in">
               <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4">
                 <Star className="w-7 h-7 text-white" />
               </div>
@@ -183,7 +221,7 @@ export default function Home({ onNavigate }: HomeProps) {
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in">
               <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="w-7 h-7 text-white" />
               </div>
@@ -191,13 +229,15 @@ export default function Home({ onNavigate }: HomeProps) {
                 Reliable & Secure
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                We prioritize security and compliance in every project, protecting your business interests.
+                We prioritize security and compliance in every project, protecting your business
+                interests.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Testimonials Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -225,12 +265,8 @@ export default function Home({ onNavigate }: HomeProps) {
                   "{testimonial.content}"
                 </p>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {testimonial.role}
-                  </p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
                 </div>
               </div>
             ))}
@@ -238,33 +274,27 @@ export default function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
+      {/* Book Consultation */}
       <BookConsultation onNavigate={onNavigate} />
-      
 
-      {/* Floating WhatsApp Button */}
-     
+      {/* Floating WhatsApp & Call Buttons */}
+      <a
+        href="https://wa.me/9779748437611"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-3xl flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 z-50 space-x-2"
+      >
+        <WhatsAppIcon className="text-white w-6 h-6" />
+        <span className="text-white font-semibold">WhatsApp</span>
+      </a>
 
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-
-<a
-  href="https://wa.me/9779748437611" // Replace with your WhatsApp number
-  target="_blank"
-  rel="noopener noreferrer"
-  className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-3xl flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 z-50 space-x-2"
->
-  <WhatsAppIcon className="text-white w-6 h-6" />
-  <span className="text-white font-semibold">WhatsApp</span>
-</a>
-<a
-  href="tel:+9779748437611" // Replace with your phone number including country code
-  target="_blank"
-  rel="noopener noreferrer"
-  className="fixed bottom-20 right-6 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-3xl flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 z-50 space-x-2"
->
-  <PhoneIcon className="text-white w-6 h-6" />
-  <span className="text-white font-semibold">Call Now</span>
-</a>
-
+      <a
+        href="tel:+9779748437611"
+        className="fixed bottom-20 right-6 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-3xl flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 z-50 space-x-2"
+      >
+        <PhoneIcon className="text-white w-6 h-6" />
+        <span className="text-white font-semibold">Call Now</span>
+      </a>
     </div>
   );
 }

@@ -9,6 +9,10 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import PublishDocs from './pages/Publish';
 import TopBar from './components/TopBar';
+import { Route } from 'react-router-dom';
+import {  Routes } from 'react-router-dom';
+import CompanyRegistration from './pages/CompanyRegistration';
+import PublishLayout from './pages/Publish';
 
 type Page = 'home' | 'it-services' | 'law-services' | 'about' | 'contact';
 
@@ -41,6 +45,14 @@ function App() {
         <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
         {renderPage()}
         <Footer onNavigate={setCurrentPage} />
+     
+<Routes>
+      <Route path="/publish" element={<PublishLayout />}>
+        {/* <Route path="company-registration" element={<CompanyRegistration />} /> */}
+        {/* <Route path="court-marriage" element={<CourtMarriage />} />
+        <Route path="divorce-process" element={<DivorceProcess />} /> */}
+      </Route>
+    </Routes>
       </div>
     </ThemeProvider>
   );

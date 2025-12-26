@@ -4,6 +4,7 @@ import BookConsultation from "../components/BookConsultation";
 import sujanImg from "./image/sujan.jpeg";
 import nikeshImg from "./image/nikesh.png";
 import pitamberImg from "./image/pitamber.png";
+import { Phishing } from "@mui/icons-material";
 
 interface AboutProps {
   onNavigate: (page: string) => void;
@@ -56,16 +57,22 @@ export default function About({ onNavigate }: AboutProps) {
     {
       name: "Sujan Subedi",
       role: "Legal Associates",
+      email:"subedisujan9847@gmail.com",
+      phoneNumber:"+9779748437611",
       image: sujanImg,
     },
     {
       name: "Nikesh Nepal",
       role: "Legal Associates",
+       email:"nikeshnepal53@gmail.com",
+      phoneNumber:"+9779845769570",
       image: nikeshImg,
     },
     {
       name: "Pitamber Pandey",
       role: "Tech Associates",
+       email:"pitamberpandey.2060@gmail.com",
+      phoneNumber:"+9779761697135",
       image: pitamberImg,
     },
   ];
@@ -173,6 +180,8 @@ export default function About({ onNavigate }: AboutProps) {
               </div>
               <h3 className="text-xl font-semibold">{member.name}</h3>
               <p className="text-gray-500">{member.role}</p>
+               <p className="text-gray-500">{member.email}</p>
+                <p className="text-gray-500">{member.phoneNumber}</p>
             </div>
           ))}
         </div>
