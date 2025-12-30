@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Moon, Sun, ChevronDown } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -13,10 +13,11 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const { isDark, toggleTheme } = useTheme();
 
+  // prevent flicker when moving mouse
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -50,23 +51,27 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
 
-            <NavButton
-              label="Home"
-              active={currentPage === 'home'}
-              onClick={() => navigate('home')}
-            />
+            <NavButton label="Home" active={currentPage === 'home'} onClick={() => navigate('home')} />
 
-            {/* Services Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setServicesOpen(!servicesOpen)}
-                className="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-              >
+            {/* Services Dropdown (hover open + delay close) */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                if (closeTimeout.current) clearTimeout(closeTimeout.current);
+                setServicesOpen(true);
+              }}
+              onMouseLeave={() => {
+                closeTimeout.current = setTimeout(() => {
+                  setServicesOpen(false);
+                }, 200); // delay so user can move without closing
+              }}
+            >
+              <button className="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                 Services <ChevronDown className="w-4 h-4" />
               </button>
 
               {servicesOpen && (
-                <div className="absolute top-full mt-2 w-48 rounded-lg bg-white dark:bg-gray-800 shadow-lg py-2">
+                <div className="absolute top-full pt-2 w-52 rounded-lg bg-white dark:bg-gray-800 shadow-lg py-2">
                   <DropdownItem onClick={() => navigate('it-services')}>
                     IT Services
                   </DropdownItem>
@@ -77,46 +82,23 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               )}
             </div>
 
-            <NavButton
-              label="About"
-              active={currentPage === 'about'}
-              onClick={() => navigate('about')}
-            />
-
-            <NavButton
-              label="Publish"
-              active={currentPage === 'publish'}
-              onClick={() => navigate('publish')}
-            />
-
-            <NavButton
-              label="Contact"
-              active={currentPage === 'contact'}
-              onClick={() => navigate('contact')}
-            />
+            <NavButton label="About" active={currentPage === 'about'} onClick={() => navigate('about')} />
+            <NavButton label="Publish" active={currentPage === 'publish'} onClick={() => navigate('publish')} />
+            <NavButton label="Contact" active={currentPage === 'contact'} onClick={() => navigate('contact')} />
 
             {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800"
-            >
+            <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </div>
 
           {/* Mobile Buttons */}
           <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800"
-            >
+            <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
