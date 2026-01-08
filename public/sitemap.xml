@@ -1,32 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
+  <!-- Main Pages -->
   <url>
     <loc>https://plutoassociates.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <lastmod>2026-01-08</lastmod>
   </url>
 
-  <!-- Contact Page -->
+  <url>
+    <loc>https://plutoassociates.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-08</lastmod>
+  </url>
+
   <url>
     <loc>https://plutoassociates.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-01-08</lastmod>
   </url>
 
-  <!-- Services Page -->
   <url>
-    <loc>https://plutoassociates.com/services</loc>
+    <loc>https://plutoassociates.com/it-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-01-08</lastmod>
   </url>
 
-  <!-- Blogs Page -->
+  <url>
+    <loc>https://plutoassociates.com/law-services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-08</lastmod>
+  </url>
+
   <url>
     <loc>https://plutoassociates.com/blogs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <lastmod>2026-01-08</lastmod>
+  </url>
+
+  <!-- Publish Main -->
+  <url>
+    <loc>https://plutoassociates.com/publish</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-08</lastmod>
+  </url>
+
+  <!-- Publish Subpages -->
+  <url>
+    <loc>https://plutoassociates.com/publish/company-registration</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-08</lastmod>
+  </url>
+
+  <url>
+    <loc>https://plutoassociates.com/publish/court-marriage</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-08</lastmod>
+  </url>
+
+  <url>
+    <loc>https://plutoassociates.com/publish/divorce-process</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-08</lastmod>
   </url>
 
 </urlset>

@@ -1,19 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Moon, Sun, ChevronDown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
-interface NavbarProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
-}
-
-export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const location = useLocation();
 
-  // prevent flicker when moving mouse
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -22,8 +18,9 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navigate = (page: string) => {
-    onNavigate(page);
+  const isActive = (path: string) => location.pathname === path;
+
+  const closeMenus = () => {
     setIsOpen(false);
     setServicesOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,19 +38,21 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <div
-            onClick={() => navigate('home')}
-            className="cursor-pointer text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent"
+          <Link
+            to="/"
+            onClick={closeMenus}
+            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent"
           >
             PLUTO ASSOCIATES
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
+            <NavLink to="/" active={isActive('/')} onClick={closeMenus}>
+              Home
+            </NavLink>
 
-            <NavButton label="Home" active={currentPage === 'home'} onClick={() => navigate('home')} />
-
-            {/* Services Dropdown (hover open + delay close) */}
+            {/* Services Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => {
@@ -63,7 +62,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               onMouseLeave={() => {
                 closeTimeout.current = setTimeout(() => {
                   setServicesOpen(false);
-                }, 200); // delay so user can move without closing
+                }, 200);
               }}
             >
               <button className="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
@@ -72,19 +71,25 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
               {servicesOpen && (
                 <div className="absolute top-full pt-2 w-52 rounded-lg bg-white dark:bg-gray-800 shadow-lg py-2">
-                  <DropdownItem onClick={() => navigate('it-services')}>
+                  <DropdownLink to="/it-services" onClick={closeMenus}>
                     IT Services
-                  </DropdownItem>
-                  <DropdownItem onClick={() => navigate('law-services')}>
+                  </DropdownLink>
+                  <DropdownLink to="/law-services" onClick={closeMenus}>
                     Legal Services
-                  </DropdownItem>
+                  </DropdownLink>
                 </div>
               )}
             </div>
 
-            <NavButton label="About" active={currentPage === 'about'} onClick={() => navigate('about')} />
-            <NavButton label="Publish" active={currentPage === 'publish'} onClick={() => navigate('publish')} />
-            <NavButton label="Contact" active={currentPage === 'contact'} onClick={() => navigate('contact')} />
+            <NavLink to="/about" active={isActive('/about')} onClick={closeMenus}>
+              About
+            </NavLink>
+            <NavLink to="/publish" active={location.pathname.startsWith('/publish')} onClick={closeMenus}>
+              Publish
+            </NavLink>
+            <NavLink to="/contact" active={isActive('/contact')} onClick={closeMenus}>
+              Contact
+            </NavLink>
 
             {/* Theme Toggle */}
             <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
@@ -108,31 +113,34 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 border-t">
-          <MobileItem onClick={() => navigate('home')}>Home</MobileItem>
-          <MobileItem onClick={() => navigate('it-services')}>IT Services</MobileItem>
-          <MobileItem onClick={() => navigate('law-services')}>Legal Services</MobileItem>
-          <MobileItem onClick={() => navigate('about')}>About</MobileItem>
-          <MobileItem onClick={() => navigate('publish')}>Publish</MobileItem>
-          <MobileItem onClick={() => navigate('contact')}>Contact</MobileItem>
+          <MobileLink to="/" onClick={closeMenus}>Home</MobileLink>
+          <MobileLink to="/it-services" onClick={closeMenus}>IT Services</MobileLink>
+          <MobileLink to="/law-services" onClick={closeMenus}>Legal Services</MobileLink>
+          <MobileLink to="/about" onClick={closeMenus}>About</MobileLink>
+          <MobileLink to="/publish" onClick={closeMenus}>Publish</MobileLink>
+          <MobileLink to="/contact" onClick={closeMenus}>Contact</MobileLink>
         </div>
       )}
     </nav>
   );
 }
 
-/* ---------------- Small Components ---------------- */
+/* ---------------- Components ---------------- */
 
-function NavButton({
-  label,
+function NavLink({
+  to,
   active,
+  children,
   onClick,
 }: {
-  label: string;
+  to: string;
   active: boolean;
+  children: React.ReactNode;
   onClick: () => void;
 }) {
   return (
-    <button
+    <Link
+      to={to}
       onClick={onClick}
       className={`text-sm font-medium transition-colors ${
         active
@@ -140,41 +148,47 @@ function NavButton({
           : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
       }`}
     >
-      {label}
-    </button>
+      {children}
+    </Link>
   );
 }
 
-function DropdownItem({
+function DropdownLink({
+  to,
   children,
   onClick,
 }: {
+  to: string;
   children: React.ReactNode;
   onClick: () => void;
 }) {
   return (
-    <button
+    <Link
+      to={to}
       onClick={onClick}
-      className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
     >
       {children}
-    </button>
+    </Link>
   );
 }
 
-function MobileItem({
+function MobileLink({
+  to,
   children,
   onClick,
 }: {
+  to: string;
   children: React.ReactNode;
   onClick: () => void;
 }) {
   return (
-    <button
+    <Link
+      to={to}
       onClick={onClick}
-      className="block w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="block px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       {children}
-    </button>
+    </Link>
   );
 }

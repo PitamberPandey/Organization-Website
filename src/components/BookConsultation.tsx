@@ -1,10 +1,9 @@
 import { Calendar } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface BookConsultationProps {
-  onNavigate: (page: string) => void;
-}
+export default function BookConsultation() {
+  const navigate = useNavigate();
 
-export default function BookConsultation({ onNavigate }: BookConsultationProps) {
   return (
     <section className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-700 dark:to-cyan-700 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -16,7 +15,7 @@ export default function BookConsultation({ onNavigate }: BookConsultationProps) 
           Book a free consultation with our experts to discuss your IT and legal needs
         </p>
         <button
-          onClick={() => onNavigate('contact')}
+          onClick={() => navigate('/contact')}
           className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl"
         >
           Book Consultation

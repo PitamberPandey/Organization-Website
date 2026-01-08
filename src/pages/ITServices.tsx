@@ -2,12 +2,11 @@ import { Code } from 'lucide-react';
 import ServiceCard from '../components/ServiceCard';
 import BookConsultation from '../components/BookConsultation';
 import { itServices } from '../data/services';
+import { useNavigate } from 'react-router-dom';
 
-interface ITServicesProps {
-  onNavigate: (page: string) => void;
-}
+export default function ITServices() {
+  const navigate = useNavigate();
 
-export default function ITServices({ onNavigate }: ITServicesProps) {
   return (
     <div className="min-h-screen pt-16">
       <section className="bg-gradient-to-br from-blue-500 to-cyan-500 dark:from-blue-700 dark:to-cyan-700 py-20">
@@ -44,44 +43,18 @@ export default function ITServices({ onNavigate }: ITServicesProps) {
               Why Choose Our IT Services?
             </h3>
             <div className="grid md:grid-cols-2 gap-6 mt-8">
-              <div>
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  Modern Technologies
-                </h4>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  We use the latest frameworks and tools to build scalable, future-proof solutions
-                </p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  Agile Development
-                </h4>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Fast iterations and continuous delivery to bring your ideas to life quickly
-                </p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  24/7 Support
-                </h4>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Round-the-clock technical support to ensure your systems run smoothly
-                </p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  Security First
-                </h4>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Built-in security best practices to protect your data and users
-                </p>
-              </div>
+              {/* Features */}
             </div>
           </div>
         </div>
       </section>
 
-      <BookConsultation onNavigate={onNavigate} />
+      {/* Use useNavigate for BookConsultation */}
+      <section>
+        <div className="mt-16">
+          <BookConsultation navigate={navigate} />
+        </div>
+      </section>
     </div>
   );
 }
