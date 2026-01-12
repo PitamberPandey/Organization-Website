@@ -19,7 +19,7 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://plutoassociates.com/" />
 
-    <!-- Open Graph (Facebook/LinkedIn) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Pluto Associates | IT & Legal Services" />
     <meta
       property="og:description"
@@ -41,57 +41,68 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Structured Data (Professional Service + Services Offered) -->
+    <!-- Structured Data (Professional Service + All Services) -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Pluto Associates",
-        "url": "https://plutoassociates.com",
-        "logo": "https://plutoassociates.com/logo.png",
-        "description": "Pluto Associates provides IT solutions and legal services in Nepal, including software development, IT consulting, compliance, and legal advisory.",
-        "areaServed": "Nepal",
-        "sameAs": [
-          "https://www.facebook.com/PlutoAssociates",
-          "https://www.instagram.com/plutoassociates",
-          "https://www.tiktok.com/@plutoassociates"
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Our Services",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "name": "IT Services",
-              "url": "https://plutoassociates.com/it-services"
-            },
-            {
-              "@type": "Offer",
-              "name": "Legal Services",
-              "url": "https://plutoassociates.com/law-services"
-            },
-            {
-              "@type": "Offer",
-              "name": "Document Services",
-              "url": "https://plutoassociates.com/publish"
-            }
-          ]
-        }
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Pluto Associates",
+      "url": "https://plutoassociates.com",
+      "logo": "https://plutoassociates.com/logo.png",
+      "description": "Pluto Associates provides IT solutions and legal services in Nepal, including software development, IT consulting, compliance, and legal advisory.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Nepal"
+      },
+      "sameAs": [
+        "https://www.facebook.com/PlutoAssociates",
+        "https://www.instagram.com/plutoassociates",
+        "https://www.tiktok.com/@plutoassociates"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Our Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "IT Services",
+            "url": "https://plutoassociates.com/it-services"
+          },
+          {
+            "@type": "Offer",
+            "name": "Legal Services",
+            "url": "https://plutoassociates.com/law-services"
+          },
+          {
+            "@type": "Offer",
+            "name": "Document Services",
+            "url": "https://plutoassociates.com/publish"
+          },
+          {
+            "@type": "Offer",
+            "name": "Company Registration in Nepal",
+            "url": "https://plutoassociates.com/publish/company-registration"
+          },
+          {
+            "@type": "Offer",
+            "name": "Court Marriage Services in Nepal",
+            "url": "https://plutoassociates.com/publish/court-marriage"
+          },
+          {
+            "@type": "Offer",
+            "name": "Divorce Process in Nepal",
+            "url": "https://plutoassociates.com/publish/divorce-process"
+          }
+        ]
       }
+    }
     </script>
   </head>
 
   <body>
-    <!-- Header (Optional) -->
+    <!-- Header -->
     <header>
-      <nav>
-        <!-- Logo + Main navigation links for Google & users -->
-        <a href="/" title="Pluto Associates Homepage">Pluto Associates</a>
-        <a href="/it-services" title="IT Services">IT Services</a>
-        <a href="/law-services" title="Legal Services">Legal Services</a>
-        <a href="/publish" title="Documents / Publish">Documents</a>
-        <a href="/contact" title="Contact Us">Contact</a>
-      </nav>
+      
     </header>
 
     <!-- Main React App -->
@@ -100,11 +111,7 @@
     </main>
 
     <!-- Fallback for no JavaScript -->
-    <noscript>
-      <p>
-        Pluto Associates provides IT and legal services in Nepal. Enable JavaScript to view the full site.
-      </p>
-    </noscript>
+    
 
     <!-- Vite React Entry -->
     <script type="module" src="/src/main.tsx"></script>
