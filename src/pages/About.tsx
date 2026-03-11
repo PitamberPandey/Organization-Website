@@ -3,7 +3,7 @@ import { Target, Eye, Heart, Users } from "lucide-react";
 import BookConsultation from "../components/BookConsultation";
 import sujanImg from "./image/sujan.jpeg";
 import nikeshImg from "./image/nikesh.png";
-import pitamberImg from "./image/pitamber.png";
+
 import { Phishing } from "@mui/icons-material";
 
 interface AboutProps {
@@ -68,13 +68,13 @@ export default function About({ onNavigate }: AboutProps) {
       phoneNumber:"+9779845769570",
       image: nikeshImg,
     },
-    {
-      name: "Pitamber Pandey",
-      role: "Tech Associates",
-       email:"pitamberpandey.2060@gmail.com",
-      phoneNumber:"+9779761697135",
-      image: pitamberImg,
-    },
+    // {
+    //   name: "",
+    //   role: "Tech Associates",
+    //    email:",
+    //   phoneNumber:"+9779761697135",
+    //   image: ,
+    // },
   ];
 
   return (
